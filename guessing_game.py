@@ -7,35 +7,21 @@ Project 1 - Number Guessing Game
 import random
 
 
+# Store every score from every game
 scores = []
 
+# Return a random number between 1 and 10
 def generate_number():
     return random.randint(1, 10)
 
-def get_highscore(attempt):
-    pass
 
 def start_game():
-    """Psuedo-code Hints
-    
-    When the program starts, we want to:
-    ------------------------------------
-    1. Display an intro/welcome message to the player.
-    2. Store a random number as the answer/solution.
-    3. Continuously prompt the player for a guess.
-      a. If the guess greater than the solution, display to the player "It's lower".
-      b. If the guess is less than the solution, display to the player "It's higher".
-    
-    4. Once the guess is correct, stop looping, inform the user they "Got it"
-         and show how many attempts it took them to get the correct number.
-    5. Let the player know the game is ending, or something that indicates the game is over.
-    
-    ( You can add more features/enhancements if you'd like to. )
-    """
-    # write your code inside this function.
+    # Great the User
     print('-' * 38 + '\n Welcome to the Number Guessing Game!\n' + '-' * 38 + '\n')
 
+    # Use generate_number to generate a number
     random_solution = generate_number()
+    # Create a counter to store how many turns are required find the number
     guess_counter = 0
 
     # Try block for potential user inerrupt
@@ -44,8 +30,8 @@ def start_game():
         while True:
             try:
                 guess = input('Pick a number between 1 and 10: ')
-
                 guess = int(guess)
+                
                 guess_counter += 1
                 
                 if guess < 1 or guess > 10:
@@ -68,7 +54,18 @@ def start_game():
                 new_game = input('Would you like to play again? [y]es/[n]o: ')
 
                 if new_game.lower() == 'y':
+                    scores.append(guess_counter)
+
+                    # Loop over the stored scores
+                    for score in scores:
+                        # If the score is less\equal to the counter
+                        # save it as highscore
+                        if score <= guess_counter:
+                            guess_counter = score
+                            
                     print('\n\nThe HIGHSCORE is {}'.format(guess_counter))
+    
+                    # Reset the counter
                     guess_counter = 0
                     random_solution = generate_number()
                     continue
@@ -84,6 +81,7 @@ def start_game():
 
     except KeyboardInterrupt:
         print('User closed game with CTRL+C')
+    
                 
 if __name__ == '__main__':
     # Kick off the program by calling the start_game function.
