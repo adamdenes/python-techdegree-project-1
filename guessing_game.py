@@ -5,15 +5,15 @@ Project 1 - Number Guessing Game
 """
 
 import random
+from typing import List
 
-
-scores = []
+scores: List[int] = []
 
 def generate_number():
     """ Generate a random number between 1 and 10 """
     return random.randint(1, 10)
 
-def get_highscore(attempts_list, counter):
+def get_highscore(attempts_list: List[int], counter: int) -> int:
     """ 
     This function takes the list of attempts 
     and the current state of the guess counter.
@@ -57,11 +57,11 @@ def start_game():
     try:
         while random_solution:
             try:
-                guess = input('Pick a number between 1 and 10: ')
+                guess: int = input('Pick a number between 1 and 10: ')
                 guess = int(guess)
                 guess_counter += 1
-                #print(f'guesses :: #{guess_counter}')      # to debug guesses
-                #print(f'list-length :: [{len(scores)}]')   # to debug list
+                print(f'guesses :: #{guess_counter}')      # to debug guesses
+                print(f'list-length :: [{len(scores)}] -> {scores}')   # to debug list
                 
                 if guess < 1 or guess > 10:
                     print('{} is out of range [1-10]. Try again...'.format(guess))
@@ -75,7 +75,7 @@ def start_game():
                     continue
                 else:
                     print('\nYou got it! It took you {} tries.'.format(guess_counter))
-                    if len(scores) < 1:
+                    if not len(scores):
                         print('Best attempt sofar is {}'.format(guess_counter))
                     else:
                         print('Best attempt sofar is {}'.format(get_highscore(scores, guess_counter)))
