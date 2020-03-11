@@ -17,7 +17,7 @@ def get_highscore(attempts_list: List[int], counter: int) -> int:
     """ 
     This function takes the list of attempts 
     and the current state of the guess counter.
-    It will return only the lowes amount of attempts.
+    It will return only the lowest amount of attempts.
     """
     highscore = 0
     for attempt in attempts_list:
