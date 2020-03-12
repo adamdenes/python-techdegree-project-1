@@ -60,12 +60,12 @@ def start_game():
                 guess: int = input('Pick a number between 1 and 10: ')
                 guess = int(guess)
                 guess_counter += 1
-                print(f'guesses :: #{guess_counter}')      # to debug guesses
-                print(f'list-length :: [{len(scores)}] -> {scores}')   # to debug list
+                #print(f'guesses :: #{guess_counter}')      # to debug guesses
+                #print(f'list-length :: [{len(scores)}] -> {scores}')   # to debug list
                 
                 if guess < 1 or guess > 10:
                     print('{} is out of range [1-10]. Try again...'.format(guess))
-                    guess_counter -= 1
+                    guess_counter -= 1 # to make sure it is not counted as a guess
                     continue
                 elif guess < random_solution:
                     print('It is higher!')
